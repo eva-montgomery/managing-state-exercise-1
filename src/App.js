@@ -2,25 +2,46 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+import Input from './Input';
+import Output from './Output';
+import Reset from './Reset';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      textValue: `this is the text value in state`
+    }
+  }
+  render () {
+    return (
+      <div>
+     <Input
+     textValue = {this.state.textValue}
+     updateText = {this._updateText}
+     />
+     <Output
+      textValue = {this.state.textValue}
+     />
+     <Reset
+      resetText = {this._resetText}
+     />
+     </div>
+    );
+  }
+
+  _updateText = (event) => {
+    this.setState({
+      textValue: event.target.value
+    })
+  }
+  _resetText = () => {
+    this.setState({
+      textValue: ""
+    })
 }
+}
+
 
 export default App;
